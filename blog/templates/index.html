@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "nav.html" %}
+
+<main role="main" class="container">
+
+  {% include "post_form.html" %}
+  
+  {% for post in posts %}
+    {% include "post.html" %}
+  {% endfor %}
+
+</main><!-- /.container -->
+{% endblock content %}

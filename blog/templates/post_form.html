@@ -1,0 +1,13 @@
+<form method="POST">
+  {% csrf_token %}
+
+  {{ form.non_field_errors }}
+
+  <div class="form-group">
+    {{ form.text.errors }}
+    <label for="{{ form.text.id_for_label }}">Text</label>
+    {{ form.text }}
+  </div>
+
+  <button class="btn btn-primary" type="submt">Submit</button>
+</form>
