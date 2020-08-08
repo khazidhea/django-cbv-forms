@@ -1,16 +1,18 @@
 {% extends "base.html" %}
-
 {% block content %}
-
 {% include "nav.html" %}
-
+{% verbatim %}
 <main role="main" class="container">
+  <div class="form-group">
+    <label for="id_text">Text</label>
+    <input type="text" name="text" minlength="10" required="required" id="id_text" class="form-control">
+  </div>
+  <button class="btn btn-primary" @click="addPost">Submit</button>
 
-  {% include "post_form.html" %}
-  
-  {% for post in posts %}
-    {% include "post.html" %}
-  {% endfor %}
-
+  <div class="post" v-for="post in posts">
+    <p>{{ post.text }}</p>
+    <p>{{ post.created_at }}</p>
+  </div>
 </main><!-- /.container -->
+{% endverbatim %}
 {% endblock content %}
