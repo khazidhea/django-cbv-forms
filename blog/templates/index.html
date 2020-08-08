@@ -10,8 +10,7 @@
   <button class="btn btn-primary" @click="addPost">Submit</button>
 
   <div class="post" v-for="post in posts">
-    <p>{{ post.text }}</p>
-    <p>{{ post.created_at }}</p>
+    <post :post="post"></post>
   </div>
 </main><!-- /.container -->
 {% endverbatim %}
