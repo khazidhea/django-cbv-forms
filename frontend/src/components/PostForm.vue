@@ -16,7 +16,6 @@ export default {
   }),
   methods: {
     addPost () {
-      this.post.created_at = '10 Aug 2020'
       this.$emit('addPost', this.post)
     }
   }

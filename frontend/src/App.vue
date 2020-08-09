@@ -15,15 +15,25 @@ export default {
     Post, PostForm
   },
   data: () => ({
-    posts: [
-      {text: 'First post', created_at: '10 Aug 2020'},
-      {text: 'Second post', created_at: '10 Aug 2020'},
-    ]
+    posts: []
   }),
   methods: {
     addPost (post) {
-      this.posts.unshift(post)
+      fetch('http://localhost:8000/api/posts/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(post)
+      }).then(response => {
+        if (response.status == 201) {
+          this.posts.unshift(post)
+        }
+      })
     }
+  },
+  created () {
+    fetch('http://localhost:8000/api/posts/')
+      .then(response => response.json())
+      .then(data => this.posts = data)
   }
 }
 </script>
