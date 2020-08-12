@@ -1,11 +1,13 @@
 <template>
   <div id="app">
+    {{ username }}
     <PostForm @addPost="addPost"></PostForm>
     <Post v-for="post in posts" :post="post" :key="post.id"></Post>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Post from '@/components/Post.vue'
 import PostForm from '@/components/PostForm.vue'
 
@@ -17,8 +19,12 @@ export default {
   data: () => ({
     posts: []
   }),
+  computed: {
+    ...mapState(['username'])
+  },
   methods: {
     addPost (post) {
+      this.$store.commit('setUsername', post.text)
       fetch('http://localhost:8000/api/posts/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
